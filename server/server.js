@@ -1,6 +1,8 @@
 require('./config/config')
 
 const express = require('express')
+const mongoose = require('mongoose');
+
 const app = express()
 
 const bodyParser = require('body-parser')
@@ -11,43 +13,12 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-app.get('/', function(req, res) {
-    res.json('Expecting...');
-});
+// Configuración global de rutas
+app.use(require('./routes/index'));
 
-app.get('/usuario', function(req, res) {
-    res.json('get Usuario (OK)');
-});
-
-app.post('/usuario', function(req, res) {
-
-    let body = req.body;
-
-    if (body.nombre === undefined) {
-        res.status(400).json({
-            ok: false,
-            mensaje: "El nombre debe existir"
-        });
-
-    } else {
-        res.json({
-            persona: body
-        });
-    }
-
-});
-
-app.put('/usuario/:id', function(req, res) {
-
-    let id = req.params.id;
-
-    res.json({
-        id
-    });
-});
-
-app.delete('/usuario', function(req, res) {
-    res.json('delete Usuario (OK)');
+mongoose.connect(process.env.URLDB, (err, req) => {
+    if (err) throw err;
+    console.log('Conectado a la Base de datos');
 });
 
 app.listen(process.env.PORT, () => {
