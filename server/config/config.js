@@ -11,7 +11,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
 //========================
 //  Vencimiento del token
 //========================
-process.env.CADUCIDAD_TOKEN = 60 * 60 * 24 * 30;
+process.env.CADUCIDAD_TOKEN = 60 * 60 * 24 * 120;
 
 //========================
 //  SEED de autenticación
@@ -30,3 +30,8 @@ if (process.env.NODE_ENV === 'dev') {
 }
 
 process.env.URLDB = urlDB;
+
+//===================
+//  Google Client Id
+//===================
+process.env.CLIENT_ID = process.env.CLIENT_ID || '138776966665-9m32m27j7tv8hcghjnr0b8j2age2aiiv.apps.googleusercontent.com';
