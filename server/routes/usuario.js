@@ -94,7 +94,7 @@ app.put('/usuario/:id', [verificaToken, verificaAdminRole], (req, res) => {
             ok: true,
             usuario: usuarioDB
         });
-    })
+    });
 
 });
 
@@ -112,7 +112,7 @@ app.delete('/usuario/:id', [verificaToken, verificaAdminRole], (req, res) => {
     Usuario.findByIdAndUpdate(id, cambiaEstado, { new: true }, (err, usuarioBorrado) => {
 
         if (err) {
-            return res.status(400).json({
+            return res.status(500).json({
                 ok: false,
                 err
             });
