@@ -53,6 +53,11 @@ usuarioSchema.methods.toJSON = function() {
 
 // ... hasta aqui
 
-usuarioSchema.plugin(uniqueValidator, { message: '{PATH} debe ser único.' });
+/* 
+LA SIGUIENTE INSTRUCCION TUVE QUE COMENTARLA PORQUE EN LA SECCION 12 AL MOMENTO DE GUARDAR LA IMAGEN
+ME RETORNA UN "Validator error: El _id debe ser unico"             
+*/
+
+// usuarioSchema.plugin(uniqueValidator, { message: '{PATH} debe ser único.' });
 
 module.exports = mongoose.model('Usuario', usuarioSchema);
